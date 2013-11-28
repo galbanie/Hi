@@ -33,6 +33,8 @@ public class FrontControler extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
+        
+        
         this.getServletContext().getRequestDispatcher("/jsp/gabarit.jsp").forward(request, response);
 
         out.close();
