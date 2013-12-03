@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author galbanie
+ * @author galbanie <galbanie at setrukmarcroger@gmail.com>
  */
-public class FrontControler extends HttpServlet {
+public class ControleurUsers extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,32 +33,8 @@ public class FrontControler extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        /*String[] controles = request.getRequestURI().split("/");
-        System.out.println("------"+controles.length+"-------");
-        for(String controle : controles) System.out.println("("+controle+")");
-        System.out.println("--------------");
-        
-        System.out.println(request.getAttribute("cible"));
-        System.out.println(request.getParameter("test"));*/
-        
-        if(request.getParameter("guess") != null && request.getParameter("guess").equals("true")){
-            request.getSession(true).setAttribute("guess", true);
-        }
-        else if(request.getParameter("formulaire") != null){
-            String form = (String) request.getParameter("formulaire");
-            if(form.equals("connexion") || form.equals("inscription") || form.equals("pwdforget")){
-                this.getServletContext().getRequestDispatcher("/users").forward(request, response);
-            }
-            // d'autres formulaires
-            
-        }
-        else{
-            String cible = (String) request.getAttribute("cible");
-            
-        }
         
         this.getServletContext().getRequestDispatcher("/jsp/gabarit.jsp").forward(request, response);
-        out.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
