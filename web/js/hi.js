@@ -83,6 +83,9 @@ function verifieInputFormulaire(idForm){
 }
 
 $(document).ready(function(){
+    
+    $("#menu-user>ul").menu();
+    
     // Boite de dialogue Mot de passe oublié
     $('#box-dialog-pwdforget').ready().dialog({
         title: "Mot de passe oublié ?",

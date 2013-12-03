@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name>Help Me</display-name>
-    
     <filter>
         <filter-name>UrlFiltre</filter-name>
         <filter-class>com.hi.outils.UrlFiltre</filter-class>
@@ -10,18 +9,29 @@
         <filter-name>UrlFiltre</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <listener>
+        <description>ServletContextListener, HttpSessionListener</description>
+        <listener-class>com.hi.listerners.ContextSessionListerner</listener-class>
+    </listener>
     <servlet>
         <servlet-name>FrontControler</servlet-name>
         <servlet-class>com.hi.controleurs.FrontControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControleurUsers</servlet-name>
+        <servlet-class>com.hi.controleurs.ControleurUsers</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FrontControler</servlet-name>
-        <url-pattern>/main/*</url-pattern>
+        <url-pattern>/controle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControleurUsers</servlet-name>
+        <url-pattern>/users</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
-    </web-app>
+</web-app>

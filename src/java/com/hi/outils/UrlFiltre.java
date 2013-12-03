@@ -32,23 +32,28 @@ public class UrlFiltre implements Filter{
         
         String path = req.getRequestURI();
         
+        //String[] controles = req.getRequestURI().split("/");
+        
         if(path.endsWith(".css") || path.endsWith(".js") || path.endsWith(".jsp") || path.endsWith(".jpg") || path.endsWith(".png")){
             chain.doFilter(request, response);
         }
         else{
             String[] controles = req.getRequestURI().split("/");
             String cible = "";
+            /*System.out.println("------"+controles.length+"-------");
+            for(String controle : controles) System.out.println("("+controle+")");
+            System.out.println("--------------");*/
             if(controles.length > 2){
                 
-                if(controles[2].equals("main")){
+                if(controles[2].equals("controle")){
                     if(controles.length > 3) cible = controles[3];
                 }
                 else cible = controles[2];
                 
-                request.getRequestDispatcher("/main/"+cible).forward(request, response);
+                request.setAttribute("cible", cible);
                 
             }
-            else request.getRequestDispatcher("/main").forward(request, response);
+            request.getRequestDispatcher("/controle").forward(request, response);
         }
         
     }
