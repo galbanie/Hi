@@ -173,7 +173,7 @@
     </aside>
 </section>
 
-<section id="box-main-content">
+<section id="box-main-content" class="ui-widget-content">
     
 </section>
 
