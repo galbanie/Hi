@@ -173,8 +173,20 @@
     </aside>
 </section>
 
-<section id="box-main-content" class="ui-widget-content">
-    
+<section id="box-main-content">
+    <nav id="menu-section">
+        <ul>
+            <li><a>Hi</a> > </li>
+            <li><a>Java</a></li>
+        </ul>
+    </nav>
+    <hr class="separateur" />
+    <section >
+    <c:choose>
+        <c:when test="${empty requestScope.section}"><jsp:include page="sections/hi.jsp" /></c:when>
+        <c:otherwise><jsp:include page="sections/${requestScope.section}.jsp" /></c:otherwise>
+    </c:choose>
+    </section>
 </section>
 
 <hr class="clearboth hidden" />
