@@ -34,7 +34,7 @@ public class UrlFiltre implements Filter{
         
         //String[] controles = req.getRequestURI().split("/");
         
-        if(path.endsWith(".css") || path.endsWith(".js") || path.endsWith(".jsp") || path.endsWith(".jpg") || path.endsWith(".png")){
+        if(path.endsWith(".css") || path.endsWith(".js") || path.endsWith(".jsp") || path.endsWith(".jpg") || path.endsWith(".png") || path.endsWith(".ico")){
             chain.doFilter(request, response);
         }
         else{
