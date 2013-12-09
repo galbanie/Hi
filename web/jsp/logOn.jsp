@@ -11,7 +11,7 @@
         <td id="page-td">
             <section id="box-logOn" class="ui-widget ui-widget-content ui-corner-all" style="display: block;">
             <h1 class="ui-widget-header">Connexion</h1>
-            <form id="form-connexion" method="POST">
+            <form id="form-connexion" method="POST" action="${pageContext.request.contextPath}/register">
                 <input type="hidden" name="formulaire" value="connexion" />
                 <label>
                     Identifiant :
@@ -29,7 +29,7 @@
                 <a href="#" id="link-dialog-pwdforget" class="ui-state-default ui-corner-all">Mot de passe oublié ?</a>
             </form>
             
-            <form id="form-inscription" style="display: none;" method="POST">
+            <form id="form-inscription" style="display: none;" method="POST" action="${pageContext.request.contextPath}/register">
                 <input type="hidden" name="formulaire" value="inscription" />
                 <label>
                     Email :
@@ -38,7 +38,7 @@
 
                 <label>
                     Identifiant :
-                    <input class="ui-corner-all" type="password" name="username" />
+                    <input class="ui-corner-all" type="text" name="username" />
                 </label>
                 
                 <label>
@@ -68,11 +68,11 @@
 
 <div id="box-btn-guessIn" class="ui-widget ui-widget-content">
     <span class="ui-button-text">Invité</span>
-    <form method="POST"><input type="hidden" name="guess" value="true" /></form>
+    <form method="POST" action="${pageContext.request.contextPath}/register"><input type="hidden" name="guess" value="true" /></form>
 </div>
 
 <div id="box-dialog-pwdforget">
-    <form>
+    <form id="form-pwdforget" action="${pageContext.request.contextPath}/register" method="POST">
         <input type="hidden" name="formulaire" value="pwdforget" />
         <label>
             Email :

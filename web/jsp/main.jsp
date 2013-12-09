@@ -16,84 +16,20 @@
             <li><a>Illustrations</a></li>
         </ul>
       </li>
-      <c:if test="${empty sessionScope.usager}" ><li><a href="#">Connexion</a></li></c:if>
+      <c:if test="${empty sessionScope.usager}" ><li><a href="${pageContext.request.contextPath}/register?guess=false">Connexion</a></li></c:if>
       <li><a>Contact</a></li>
     </ul>
 </nav>
 
 <section id="box-main-menu">
     
-    <c:if test="${empty sessionScope.usager}">
+    <c:if test="${not empty sessionScope.usager}">
         <aside id="aside-menu-user" class="ui-widget-content">
         <h3 class="ui-widget-header">Controle membre</h3>
         <div id="box-main-info-user">
             
         </div>
         <nav id="menu-user">
-            <!--ul id="menu-accordeon">
-               <li><a href="#">Lien menu 1</a>
-                  <ul>
-                     <li><a href="#">lien sous menu 1</a></li>
-                     <li><a href="#">lien sous menu 1</a></li>
-                     <li><a href="#">lien sous menu 1</a></li>
-                     <li><a href="#">lien sous menu 1</a></li>
-                  </ul>
-               </li>
-                <li><a href="#">Lien menu 2</a>
-                  <ul>
-                     <li><a href="#">Lien sous menu 2</a></li>
-                     <li><a href="#">Lien sous menu 2</a></li>
-                     <li><a href="#">Lien sous menu 2</a></li>
-                     <li><a href="#">Lien sous menu 2</a></li>
-                  </ul>
-               </li>
-               <li><a href="#">Lien menu 3</a>
-                  <ul>
-                     <li><a href="#">Lien sous menu 3</a></li>
-                     <li><a href="#">Lien sous menu 3</a></li>
-                     <li><a href="#">Lien sous menu 3</a></li>
-                     <li><a href="#">Lien sous menu 3</a></li>
-                  </ul>
-               </li>
-            </ul-->
-            
-            <!--ul class="menu">
-                <li class="item1"><a href="#">Friends <span>340</span></a>
-                    <ul>
-                        <li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-                        <li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-                        <li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
-                    </ul>
-		</li>
-		<li class="item2"><a href="#">Videos <span>147</span></a>
-                    <ul>
-			<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-			<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-			<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
-                    </ul>
-		</li>
-		<li class="item3"><a href="#">Galleries <span>340</span></a>
-                    <ul>
-			<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-			<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-			<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
-                    </ul>
-		</li>
-		<li class="item4"><a href="#">Podcasts <span>222</span></a>
-                    <ul>
-			<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-			<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-			<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
-                    </ul>
-		</li>
-		<li class="item5"><a href="#">Robots <span>16</span></a>
-                    <ul>
-			<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-			<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-			<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
-                    </ul>
-		</li>
-	</ul-->
             <ul>
                 <li><a href="#">Mes articles</a></li>
                 <li><a href="#">Mes Reponses</a></li>
@@ -110,7 +46,7 @@
         <nav id="menu-cat">
             <h3 class="ui-widget-header">Catégories</h3>
             <ul class="menu">
-                <li class="item1"><a href="#">Friends <span>340</span></a>
+                <li class="item1"><a href="#">Programmation<span>340</span></a>
                     <ul>
                         <li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
                         <li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
@@ -174,13 +110,17 @@
 </section>
 
 <section id="box-main-content">
+    <c:if test="${not empty requestScope.arborescence}">
     <nav id="menu-section">
         <ul>
-            <li><a>Hi</a> > </li>
-            <li><a>Java</a></li>
+            <li><a>${requestScope.article.categorie.parent.parent.nom}</a> > </li>
+            <li><a>${requestScope.article.categorie.parent.nom}</a></li>
+            <li><a>${requestScope.article.categorie.nom}</a></li>
+            <li><a>${requestScope.article.titre}</a></li>
         </ul>
     </nav>
     <hr class="separateur" />
+    </c:if>
     <section >
     <c:choose>
         <c:when test="${empty requestScope.section}"><jsp:include page="sections/hi.jsp" /></c:when>

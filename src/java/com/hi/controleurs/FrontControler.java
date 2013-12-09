@@ -6,12 +6,14 @@
 
 package com.hi.controleurs;
 
+import com.gs.modele.entity.Usager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,8 +32,12 @@ public class FrontControler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        /*response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();*/
+        
+        HttpSession session = request.getSession();
+        
+        Usager user = (Usager) session.getAttribute("usager");
         
         /*String[] controles = request.getRequestURI().split("/");
         System.out.println("------"+controles.length+"-------");
@@ -41,24 +47,29 @@ public class FrontControler extends HttpServlet {
         System.out.println(request.getAttribute("cible"));
         System.out.println(request.getParameter("test"));*/
         
-        if(request.getParameter("guess") != null && request.getParameter("guess").equals("true")){
-            request.getSession(true).setAttribute("guess", true);
-        }
-        else if(request.getParameter("formulaire") != null){
-            String form = (String) request.getParameter("formulaire");
-            if(form.equals("connexion") || form.equals("inscription") || form.equals("pwdforget")){
-                this.getServletContext().getRequestDispatcher("/users").forward(request, response);
+        
+        
+        String cible = (String) request.getAttribute("cible");
+        
+        if(user == null){
+            if(request.getParameter("guess") != null && request.getParameter("guess").equals("true")){
+                request.getSession(true).setAttribute("guess", true);
             }
-            // d'autres formulaires
-            
-        }
-        else{
-            String cible = (String) request.getAttribute("cible");
-            
+            else if(request.getParameter("guess") != null && request.getParameter("guess").equals("false")){
+                request.getSession(true).setAttribute("guess", false);
+            }
         }
         
-        this.getServletContext().getRequestDispatcher("/jsp/gabarit.jsp").forward(request, response);
-        out.close();
+        if(cible != null){
+            if(cible.equals("register")){
+                this.getServletContext().getRequestDispatcher("/users").forward(request, response);
+            }
+            else this.getServletContext().getRequestDispatcher("/jsp/gabarit.jsp").forward(request, response);
+        }
+        else this.getServletContext().getRequestDispatcher("/jsp/gabarit.jsp").forward(request, response);
+        
+        
+        //out.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

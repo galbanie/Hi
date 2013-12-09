@@ -6,6 +6,11 @@
 
 package com.hi.listerners;
 
+import com.gs.classes.State;
+import com.gs.manager.Manager;
+import com.gs.modele.entity.Article;
+import com.hi.outils.EntityManagerSingleton;
+import java.util.LinkedList;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.http.HttpSessionEvent;
@@ -20,7 +25,9 @@ public class ContextSessionListerner implements ServletContextListener, HttpSess
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        
+        sce.getServletContext().setAttribute("manager", new Manager(EntityManagerSingleton.getInstance()));
+        sce.getServletContext().setAttribute("states", new LinkedList<State>());
+        sce.getServletContext().setAttribute("articles", new LinkedList<Article>());
     }
 
     @Override

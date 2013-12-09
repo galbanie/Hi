@@ -21,6 +21,10 @@
         <servlet-name>ControleurUsers</servlet-name>
         <servlet-class>com.hi.controleurs.ControleurUsers</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControleurTopic</servlet-name>
+        <servlet-class>com.hi.controleurs.ControleurTopic</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FrontControler</servlet-name>
         <url-pattern>/controle</url-pattern>
@@ -28,6 +32,10 @@
     <servlet-mapping>
         <servlet-name>ControleurUsers</servlet-name>
         <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControleurTopic</servlet-name>
+        <url-pattern>/topic</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -37,12 +45,12 @@
     <welcome-file-list>
         <welcome-file>jsp/gabarit.jsp</welcome-file>
     </welcome-file-list>
-    <error-page>
+    <!--error-page>
         <error-code>403</error-code>
         <location>/jsp/erreur.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
         <location>/jsp/erreur.jsp</location>
-    </error-page>
+    </error-page-->
 </web-app>

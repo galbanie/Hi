@@ -6,12 +6,17 @@
 
 package com.hi.controleurs;
 
+
+import com.gs.manager.Manager;
+import com.gs.modele.entity.Usager;
+import com.gs.modele.entity.Membre;
+import com.hi.outils.EntityManagerSingleton;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,9 +35,37 @@ public class ControleurUsers extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         
+        //Manager manager = (Manager) this.getServletContext().getAttribute("manager");
+        Manager manager = new Manager(EntityManagerSingleton.getInstance());
+        HttpSession session = request.getSession();
+        Usager user;
+        
+        if(request.getParameter("formulaire") != null){
+            String form = (String) request.getParameter("formulaire");
+            /*if(form.equals("connexion") || form.equals("inscription") || form.equals("pwdforget")){
+                System.out.println("form : " + form);
+            }*/
+            
+            if(form.equals("connexion")){
+                manager.createNamedQuery("Usager.findByIdentifiant");
+                manager.setParametre("identifiant", request.getParameter("username"));
+                user = (Usager) manager.findSingleResult();
+                if(user != null){
+                    if(user.getPassword().equals(request.getParameter("password"))){
+                        session.setAttribute("usager", user);
+                    }
+                }
+            }
+            else if(form.equals("inscription")){
+                user = new Membre(request.getParameter("username"), request.getParameter("email"), request.getParameter("password"));
+                System.out.println(user);
+                manager.create(user);
+            }
+            else if(form.equals("pwdforget")){
+                
+            }
+        }
         
         this.getServletContext().getRequestDispatcher("/jsp/gabarit.jsp").forward(request, response);
     }
