@@ -43,5 +43,6 @@ public class ContextSessionListerner implements ServletContextListener, HttpSess
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
         se.getSession().setAttribute("guess",false);
+        se.getSession().removeAttribute("usager");
     }
 }

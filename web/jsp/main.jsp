@@ -7,17 +7,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <nav id="menu-main">
-    <ul><li><a>Help I</a></li>
-      <li>
-          <a>Règles</a>
-        <ul>
-            <li><a>Web Design</a></li>
-            <li><a>Web Development</a></li>
-            <li><a>Illustrations</a></li>
-        </ul>
-      </li>
-      <c:if test="${empty sessionScope.usager}" ><li><a href="${pageContext.request.contextPath}/register?guess=false">Connexion</a></li></c:if>
-      <li><a>Contact</a></li>
+    <ul>
+        <li><a>Help I</a></li>
+        <c:if test="${not empty sessionScope.usager}" >
+        <li>
+            <a>Topic</a>
+            <ul>
+                <li><a>Ajouter</a></li>
+                <li><a>visionner</a></li>
+                <li><a>Editer</a></li>
+            </ul>
+        </li>
+        </c:if>
+        <c:if test="${empty sessionScope.usager}" ><li><a href="${pageContext.request.contextPath}/register?guess=false">Connexion</a></li></c:if>
+        <li><a>Règles</a></li>
+        <li><a>Contact</a></li>
     </ul>
 </nav>
 
@@ -36,7 +40,7 @@
                 <li><a href="#">Les Alertes</a></li>
                 <li><a href="#">Gestionnaires des articles</a></li>
                 <li><a href="#">Gestionnaires des utilisateurs</a></li>
-                <li><a href="#" class="deconnexion">Déconnexion</a></li>
+                <li><a href="${pageContext.request.contextPath}/register?user=deconnexion" class="deconnexion">Déconnexion</a></li>
             </ul>
         </nav>
     </aside>

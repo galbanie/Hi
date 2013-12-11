@@ -41,6 +41,7 @@ public class ControleurUsers extends HttpServlet {
         HttpSession session = request.getSession();
         Usager user;
         
+        
         if(request.getParameter("formulaire") != null){
             String form = (String) request.getParameter("formulaire");
             /*if(form.equals("connexion") || form.equals("inscription") || form.equals("pwdforget")){
@@ -66,6 +67,19 @@ public class ControleurUsers extends HttpServlet {
                 
             }
         }
+        else{
+            if(request.getParameter("user") != null){
+                String action = (String) request.getParameter("user");
+                
+                if(action.equals("deconnexion")){
+                    if(session.getAttribute("usager") != null){
+                        session.removeAttribute("usager");
+                        session.setAttribute("guess", true);
+                    }
+                }
+            }
+        }
+        
         
         this.getServletContext().getRequestDispatcher("/jsp/gabarit.jsp").forward(request, response);
     }
