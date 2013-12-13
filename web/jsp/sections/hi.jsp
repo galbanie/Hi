@@ -7,16 +7,22 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<h1 class="ui-widget-header">Les Articles</h1>
+<c:out value="${sessionScope.usager.getClass().name}" />
+<h1 class="ui-widget-header">Help Me</h1>
 <c:forEach var="article" items="${applicationScope.articles}">
     <article class="article-mini">
         <header>
-            <h2>Titre</h2>
-            <span>Categorie</span>
+            <h2 class="ui-widget-header">${article.titre}</h2>
+            <div>
+                <span class="span-cat">Catégorie : <a href="#">${article.categorie.nom}</a></span>
+                <span class="span-publication">(date publication)${article.publication}</span>
+                <hr class="clearboth" style="margin: 0; visibility: hidden;" />
+            </div>
+            
         </header>
-        <p>Contenu</p>
+        <p>${article.contenus[0].text}</p>
         <footer>
-            <span>Emetter</span>
+            <span>Emetteur</span>
             <span>Date de publication</span>
         </footer>
         <a>Consulter</a>

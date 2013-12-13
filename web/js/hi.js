@@ -84,6 +84,8 @@ function verifieInputFormulaire(idForm){
 
 $(document).ready(function(){
     
+    //$('textarea').resizable();
+    
     $("#menu-user>ul").menu();
     
     // Boite de dialogue Mot de passe oublié
@@ -129,5 +131,12 @@ $(document).ready(function(){
     // verification du formulaire d'inscription
     $('#form-inscription').submit(function(){
         return verifieInputFormulaire(this.id);
+    });
+    // verification du formulaire d'ajout d'article
+    $('#form-add-topic').submit(function(){
+        //if(/[a-zA-Z0-9]{14,1400}/.test($('textarea').text())) ;
+        //alert($.trim($('#contenu').val()) === "" ? "Empty" : "Not Empty");
+        //console.log(/[a-zA-Z0-9]/.test($('textarea').text()));
+        return $.trim($('#contenu').val()) === "" ? false : true;
     });
 });

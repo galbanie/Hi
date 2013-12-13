@@ -6,9 +6,11 @@
 
 package com.hi.controleurs;
 
+import com.gs.manager.Manager;
 import com.gs.modele.entity.Usager;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +39,8 @@ public class FrontControler extends HttpServlet {
         
         HttpSession session = request.getSession();
         
+        Manager manager = (Manager) this.getServletContext().getAttribute("manager");
+        
         Usager user = (Usager) session.getAttribute("usager");
         
         /*String[] controles = request.getRequestURI().split("/");
@@ -47,7 +51,8 @@ public class FrontControler extends HttpServlet {
         System.out.println(request.getAttribute("cible"));
         System.out.println(request.getParameter("test"));*/
         
-        
+        manager.createNamedQuery("Article.findAll");
+        this.getServletContext().setAttribute("articles",manager.findResultList());
         
         String cible = (String) request.getAttribute("cible");
         
@@ -64,6 +69,7 @@ public class FrontControler extends HttpServlet {
             if(cible.equals("register")){
                 this.getServletContext().getRequestDispatcher("/users").forward(request, response);
             }
+            else if(cible.equals("sujet")) this.getServletContext().getRequestDispatcher("/topic").forward(request, response);
             else this.getServletContext().getRequestDispatcher("/jsp/gabarit.jsp").forward(request, response);
         }
         else this.getServletContext().getRequestDispatcher("/jsp/gabarit.jsp").forward(request, response);

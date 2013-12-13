@@ -9,6 +9,9 @@ package com.hi.controleurs;
 import com.gs.manager.Manager;
 import com.gs.modele.entity.Article;
 import com.gs.modele.entity.Categorie;
+import com.gs.modele.entity.Membre;
+import com.gs.modele.entity.Texte;
+import com.gs.modele.entity.Usager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
@@ -17,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,18 +42,38 @@ public class ControleurTopic extends HttpServlet {
         
         Manager manager = (Manager) this.getServletContext().getAttribute("manager");
         
-        // formulaires
+        HttpSession session = request.getSession();
         
-        List arborescence = new LinkedList();
-        
-        Article article;
+        //Article article;
         
         Categorie categorie;
         
-        if(request.getParameter("cat") != null){
-            manager.createNamedQuery("Categorie.findByNom");
+        if(session.getAttribute("usager") == null) this.getServletContext().getRequestDispatcher("/jsp/gabarit.jsp").forward(request, response);
+        else if(request.getParameter("formulaire") != null){
+            String form = (String) request.getParameter("formulaire");
+            
+            if(form.equals("addTopic")){
+                Membre membre = (Membre) session.getAttribute("usager");
+                categorie = (Categorie) manager.find(Categorie.class, (String)request.getParameter("categorie"));
+                Article topic = new Article(request.getParameter("titre"));
+                topic.setCategorie(categorie);
+                topic.setContenu(new Texte((String)request.getParameter("contenu")));
+                membre.setArticle(topic);
+                manager.update(membre);
+                request.setAttribute("section", "hi");
+            }
+        }
+        else if(request.getParameter("action") != null){
+            String action = (String) request.getParameter("action");
+            
+            if(action.equals("add")){
+                request.setAttribute("section", "addTopic");
+            }
+        }
+        else if(request.getParameter("cat") != null){
+            /*manager.createNamedQuery("Categorie.findByNom");
             manager.setParametre("nom", (String)request.getParameter("cat"));
-            categorie = (Categorie) manager.findSingleResult();
+            categorie = (Categorie) manager.findSingleResult();*/
         }
         else if(request.getParameter("article") != null){
             

@@ -8,12 +8,12 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <nav id="menu-main">
     <ul>
-        <li><a>Help I</a></li>
+        <li><a href="${pageContext.request.contextPath}">Help I</a></li>
         <c:if test="${not empty sessionScope.usager}" >
         <li>
             <a>Topic</a>
             <ul>
-                <li><a>Ajouter</a></li>
+                <li><a href="${pageContext.request.contextPath}/sujet?action=add">Ajouter</a></li>
                 <li><a>visionner</a></li>
                 <li><a>Editer</a></li>
             </ul>
@@ -31,15 +31,18 @@
         <aside id="aside-menu-user" class="ui-widget-content">
         <h3 class="ui-widget-header">Controle membre</h3>
         <div id="box-main-info-user">
-            
+            <img id="box-main-info-user-img" src="${pageContext.request.contextPath}/css/natif/images/Profil_default.jpg" alt="" width="90" height="70" />
+            <div>
+                <a href="#">${sessionScope.usager.identifiant}</a>
+            </div>
         </div>
         <nav id="menu-user">
             <ul>
                 <li><a href="#">Mes articles</a></li>
                 <li><a href="#">Mes Reponses</a></li>
                 <li><a href="#">Les Alertes</a></li>
-                <li><a href="#">Gestionnaires des articles</a></li>
-                <li><a href="#">Gestionnaires des utilisateurs</a></li>
+                <c:if test="${sessionScope.usager.getClass().simpleName eq 'Moderateur' or sessionScope.usager.getClass().simpleName eq 'Administrateur'}"><li><a href="#">Gestionnaires des articles</a></li></c:if>
+                <c:if test="${sessionScope.usager.getClass().simpleName eq 'Administrateur'}"><li><a href="#">Gestionnaires des utilisateurs</a></li></c:if>
                 <li><a href="${pageContext.request.contextPath}/register?user=deconnexion" class="deconnexion">Déconnexion</a></li>
             </ul>
         </nav>
@@ -52,35 +55,35 @@
             <ul class="menu">
                 <li class="item1"><a href="#">Programmation<span>340</span></a>
                     <ul>
-                        <li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-                        <li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-                        <li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
+                        <li class="subitem1"><a href="#">Java <span>14</span></a></li>
+                        <li class="subitem2"><a href="#">C# <span>6</span></a></li>
+                        <li class="subitem3"><a href="#">C++ <span>2</span></a></li>
                     </ul>
 		</li>
-		<li class="item2"><a href="#">Videos <span>147</span></a>
+		<li class="item2"><a href="#">Photographie <span>147</span></a>
                     <ul>
-			<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
+			<li class="subitem1"><a href="#">HDR <span>14</span></a></li>
+			<li class="subitem2"><a href="#">Magic Lantern <span>6</span></a></li>
+			<li class="subitem3"><a href="#">Bonnes pratiques <span>2</span></a></li>
+                    </ul>
+		</li>
+		<li class="item3"><a href="#">Vidéographie <span>340</span></a>
+                    <ul>
+			<li class="subitem1"><a href="#">Tournage <span>14</span></a></li>
+			<li class="subitem2"><a href="#">Montage <span>6</span></a></li>
+			<li class="subitem3"><a href="#">Accessoires <span>2</span></a></li>
+                    </ul>
+		</li>
+		<li class="item4"><a href="#">Windows <span>222</span></a>
+                    <ul>
+			<li class="subitem1"><a href="#">Logiciels <span>14</span></a></li>
 			<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
 			<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
                     </ul>
 		</li>
-		<li class="item3"><a href="#">Galleries <span>340</span></a>
+		<li class="item5"><a href="#">Mac OS <span>16</span></a>
                     <ul>
-			<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-			<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-			<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
-                    </ul>
-		</li>
-		<li class="item4"><a href="#">Podcasts <span>222</span></a>
-                    <ul>
-			<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-			<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-			<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
-                    </ul>
-		</li>
-		<li class="item5"><a href="#">Robots <span>16</span></a>
-                    <ul>
-			<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
+			<li class="subitem1"><a href="#">Idevise <span>14</span></a></li>
 			<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
 			<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
                     </ul>

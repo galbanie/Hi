@@ -188,6 +188,35 @@ body>section{
     width: 280px;
 }
 
+#box-main-info-user{
+    padding: 5px;
+}
+
+#box-main-info-user > *{
+    display: inline-block;
+}
+
+#box-main-info-user > div{
+    width: 165px;
+}
+
+#box-main-info-user > div a{
+    display: block;
+    padding: 5px;
+    text-align: left;
+    font-size: medium;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+#box-main-info-user > div a:hover{
+    background-color: #103c56;
+}
+
+#box-main-info-user-img{
+    border: 4px threedshadow double;
+}
+
 #box-main-content{
     width: 1080px;
     height: 700px;
@@ -393,6 +422,48 @@ body>section{
 #menu-section ul li{
     display: inline-block;
 }
+
+/* Principal formulaire */
+#box-main-content > section >  form{
+    width: 770px;
+    margin: 20px auto;
+}
+
+#box-main-content > section >  form > label{
+    font-size: medium;
+    font-weight: bolder;
+}
+
+#box-main-content > section >  form > label > input[type="text"]{
+    width: 100%;
+}
+
+#form-add-topic textArea{
+    width: 100%;
+    resize:vertical;
+}
+
+/* Article mini*/
+.article-mini{
+    background-color: #bcbcbf;
+    padding: 5px 20px;
+}
+
+.article-mini header{
+    border-bottom: 4px #FFFFFF double;
+}
+
+.span-cat{
+    float: left;
+    font-weight: bold;
+}
+
+.span-publication{
+    float: right;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
 
 /* class utiles */
 .clearleft{
